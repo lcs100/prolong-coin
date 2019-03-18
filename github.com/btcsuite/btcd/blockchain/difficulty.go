@@ -6,9 +6,9 @@ package blockchain
 
 import (
 	"fmt"
+	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/btcsuite/btcd/cpu"
-	"github.com/btcsuite/btcd/chaincfg"
 	"math/big"
 	"time"
 )
@@ -228,7 +228,7 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 	if (lastNode.height+1) == 120{
 		panic("crash")
 	}
-	distance:= int32(3)
+	distance:= int32(1)
 	//Return the previous block's difficulty requirements if this block
 	//is not at a difficulty retarget interval.
 	// change target each 2016 blocks
@@ -290,12 +290,14 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 	//	fmt.Println(new,genesis)
 	//	fmt.Println("difficulty: ",genesis.Div(genesis,new))
 	//}
-	fmt.Println(fmt.Println("cpuUsage: ",cpu.CpuUsage))
+	//fmt.Println(fmt.Println("cpuUsage: ",cpu.CpuUsage))
 	newTarget := new(big.Int).Mul(oldTarget, big.NewInt(adjustedTimespan))
 	//targetTimeSpan := int64(b.chainParams.TargetTimespan / time.Second)
 	//newTarget.Div(newTarget, big.NewInt(targetTimeSpan))
-	arg := int64(cpu.CpuUsage)
-	fmt.Println(arg)
+	arg := int64(cpu.CpuUsage/10)
+	if arg == 0{
+		arg = 10
+	}
 	newTarget.Div(CompactToBig(chaincfg.SimNetParams.PowLimitBits), big.NewInt(arg))
 
 	//Limit new value to the proof of work limit.
@@ -315,7 +317,7 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 		time.Duration(actualTimespan)*time.Second,
 		time.Duration(adjustedTimespan)*time.Second,
 		b.chainParams.TargetTimespan)
-
+	fmt.Println(newTarget)
 	return newTargetBits, nil
 }
 

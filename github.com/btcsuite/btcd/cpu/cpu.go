@@ -17,5 +17,5 @@ func GetCpuUsage() float64{
 	}
 	data := strings.Split(string(res),"     ")
 	cpuUsage,_ := strconv.ParseFloat(data[len(data)-1][:len(data[len(data)-1])-1],64)
-	return cpuUsage
+	return 100-cpuUsage
 }
