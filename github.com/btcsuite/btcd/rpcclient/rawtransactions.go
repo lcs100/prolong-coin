@@ -105,7 +105,6 @@ func (c *Client) GetRawTransactionAsync(txHash *chainhash.Hash) FutureGetRawTran
 	cmd := btcjson.NewGetRawTransactionCmd(hash, btcjson.Int(0))
 	return c.sendCmd(cmd)
 }
-
 // GetRawTransaction returns a transaction given its hash.
 //
 // See GetRawTransactionVerbose to obtain additional information about the

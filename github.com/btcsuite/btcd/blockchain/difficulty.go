@@ -5,10 +5,7 @@
 package blockchain
 
 import (
-	"fmt"
-	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
-	"github.com/btcsuite/btcd/cpu"
 	"math/big"
 	"time"
 )
@@ -215,25 +212,72 @@ func (b *BlockChain) findPrevTestNetDifficulty(startNode *blockNode) uint32 {
 	return lastBits
 }
 
-// calcNextRequiredDifficulty calculates the required difficulty for the block
-// after the passed previous block node based on the difficulty retarget rules.
-// This function differs from the exported CalcNextRequiredDifficulty in that
-// the exported version uses the current best chain as the previous block node
-// while this function accepts any block node.
+// my fucntion
+//func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTime time.Time) (uint32, error) {
+//	// Genesis block.
+//	if lastNode == nil {
+//		return b.chainParams.PowLimitBits, nil
+//	}
+//	if (lastNode.height+1) == 120{
+//		panic("crash")
+//	}
+//	distance:= int32(1)
+//	if (lastNode.height+1)% distance != 0{
+//		if b.chainParams.ReduceMinDifficulty {
+//			reductionTime := int64(b.chainParams.MinDiffReductionTime /
+//				time.Second)
+//			allowMinTime := lastNode.timestamp + reductionTime
+//			if newBlockTime.Unix() > allowMinTime {
+//				return b.chainParams.PowLimitBits, nil
+//			}
+//			return b.findPrevTestNetDifficulty(lastNode), nil
+//		}
+//		return lastNode.bits, nil
+//	}
+//	firstNode := lastNode.RelativeAncestor(distance - 1)
+//	if firstNode == nil {
+//		return 0, AssertError("unable to obtain previous retarget block")
+//	}
+//
+//	actualTimespan := lastNode.timestamp - firstNode.timestamp
+//	adjustedTimespan := actualTimespan
+//	if actualTimespan < b.minRetargetTimespan {
+//		adjustedTimespan = b.minRetargetTimespan
+//	} else if actualTimespan > b.maxRetargetTimespan {
+//		adjustedTimespan = b.maxRetargetTimespan
+//	}
+//	oldTarget := CompactToBig(lastNode.bits)
+//	newTarget := new(big.Int).Mul(oldTarget, big.NewInt(adjustedTimespan))
+//	arg := int64(cpu.CpuUsage/10)
+//	if arg == 0{
+//		arg = 10
+//	}
+//	newTarget.Div(CompactToBig(chaincfg.SimNetParams.PowLimitBits), big.NewInt(arg))
+//	if newTarget.Cmp(b.chainParams.PowLimit) > 0 {
+//		newTarget.Set(b.chainParams.PowLimit)
+//	}
+//	newTargetBits := BigToCompact(newTarget)
+//	log.Debugf("Difficulty retarget at block height %d", lastNode.height+1)
+//	log.Debugf("Old target %08x (%064x)", lastNode.bits, oldTarget)
+//	log.Debugf("New target %08x (%064x)", newTargetBits, CompactToBig(newTargetBits))
+//	log.Debugf("Actual timespan %v, adjusted timespan %v, target timespan %v",
+//		time.Duration(actualTimespan)*time.Second,
+//		time.Duration(adjustedTimespan)*time.Second,
+//		b.chainParams.TargetTimespan)
+//	fmt.Println(newTarget)
+//	return newTargetBits, nil
+//}
+
+//original function
 func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTime time.Time) (uint32, error) {
 	// Genesis block.
 	if lastNode == nil {
 		return b.chainParams.PowLimitBits, nil
 	}
-	if (lastNode.height+1) == 120{
-		panic("crash")
-	}
-	distance:= int32(1)
-	//Return the previous block's difficulty requirements if this block
-	//is not at a difficulty retarget interval.
-	// change target each 2016 blocks
-	if (lastNode.height+1)% distance != 0{
-	//if (lastNode.height+1)%b.blocksPerRetarget != 0 {
+
+	// Return the previous block's difficulty requirements if this block
+	// is not at a difficulty retarget interval.
+	if (lastNode.height+1)%b.blocksPerRetarget != 0 {
 		// For networks that support it, allow special reduction of the
 		// required difficulty once too much time has elapsed without
 		// mining a block.
@@ -260,8 +304,7 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 
 	// Get the block node at the previous retarget (targetTimespan days
 	// worth of blocks).
-	///firstNode := lastNode.RelativeAncestor(b.blocksPerRetarget - 1)
-	firstNode := lastNode.RelativeAncestor(distance - 1)
+	firstNode := lastNode.RelativeAncestor(b.blocksPerRetarget - 1)
 	if firstNode == nil {
 		return 0, AssertError("unable to obtain previous retarget block")
 	}
@@ -282,25 +325,11 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 	// rounded down.  Bitcoind also uses integer division to calculate this
 	// result.
 	oldTarget := CompactToBig(lastNode.bits)
-	//newTarget := oldTarget.Div(oldTarget,big.NewInt(2))
-	////fmt.Println("height: ",lastNode.height+1)
-	//if (lastNode.height+1) % 3 == 0 {
-	//	new := new(big.Int).Set(newTarget)
-	//	genesis := CompactToBig(chaincfg.SimNetParams.PowLimitBits)
-	//	fmt.Println(new,genesis)
-	//	fmt.Println("difficulty: ",genesis.Div(genesis,new))
-	//}
-	//fmt.Println(fmt.Println("cpuUsage: ",cpu.CpuUsage))
 	newTarget := new(big.Int).Mul(oldTarget, big.NewInt(adjustedTimespan))
-	//targetTimeSpan := int64(b.chainParams.TargetTimespan / time.Second)
-	//newTarget.Div(newTarget, big.NewInt(targetTimeSpan))
-	arg := int64(cpu.CpuUsage/10)
-	if arg == 0{
-		arg = 10
-	}
-	newTarget.Div(CompactToBig(chaincfg.SimNetParams.PowLimitBits), big.NewInt(arg))
+	targetTimeSpan := int64(b.chainParams.TargetTimespan / time.Second)
+	newTarget.Div(newTarget, big.NewInt(targetTimeSpan))
 
-	//Limit new value to the proof of work limit.
+	// Limit new value to the proof of work limit.
 	if newTarget.Cmp(b.chainParams.PowLimit) > 0 {
 		newTarget.Set(b.chainParams.PowLimit)
 	}
@@ -317,7 +346,7 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 		time.Duration(actualTimespan)*time.Second,
 		time.Duration(adjustedTimespan)*time.Second,
 		b.chainParams.TargetTimespan)
-	fmt.Println(newTarget)
+
 	return newTargetBits, nil
 }
 

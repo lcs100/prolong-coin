@@ -642,73 +642,73 @@ func checkSerializedHeight(coinbaseTx *btcutil.Tx, wantHeight int32) error {
 //
 // This function MUST be called with the chain state lock held (for writes).
 func (b *BlockChain) checkBlockHeaderContext(header *wire.BlockHeader, prevNode *blockNode, flags BehaviorFlags) error {
-	//fastAdd := flags&BFFastAdd == BFFastAdd
-	//if !fastAdd {
-	//	// Ensure the difficulty specified in the block header matches
-	//	// the calculated difficulty based on the previous block and
-	//	// difficulty retarget rules.
-	//	expectedDifficulty, err := b.calcNextRequiredDifficulty(prevNode,
-	//		header.Timestamp)
-	//	if err != nil {
-	//		return err
-	//	}
-	//	blockDifficulty := header.Bits
-	//	if blockDifficulty != expectedDifficulty {
-	//		str := "block difficulty of %d is not the expected value of %d"
-	//		str = fmt.Sprintf(str, blockDifficulty, expectedDifficulty)
-	//		return ruleError(ErrUnexpectedDifficulty, str)
-	//	}
-	//
-	//	// Ensure the timestamp for the block header is after the
-	//	// median time of the last several blocks (medianTimeBlocks).
-	//	medianTime := prevNode.CalcPastMedianTime()
-	//	if !header.Timestamp.After(medianTime) {
-	//		str := "block timestamp of %v is not after expected %v"
-	//		str = fmt.Sprintf(str, header.Timestamp, medianTime)
-	//		return ruleError(ErrTimeTooOld, str)
-	//	}
-	//}
-	//
-	//// The height of this block is one more than the referenced previous
-	//// block.
-	//blockHeight := prevNode.height + 1
-	//
-	//// Ensure chain matches up to predetermined checkpoints.
-	//blockHash := header.BlockHash()
-	//if !b.verifyCheckpoint(blockHeight, &blockHash) {
-	//	str := fmt.Sprintf("block at height %d does not match "+
-	//		"checkpoint hash", blockHeight)
-	//	return ruleError(ErrBadCheckpoint, str)
-	//}
-	//
-	//// Find the previous checkpoint and prevent blocks which fork the main
-	//// chain before it.  This prevents storage of new, otherwise valid,
-	//// blocks which build off of old blocks that are likely at a much easier
-	//// difficulty and therefore could be used to waste cache and disk space.
-	//checkpointNode, err := b.findPreviousCheckpoint()
-	//if err != nil {
-	//	return err
-	//}
-	//if checkpointNode != nil && blockHeight < checkpointNode.height {
-	//	str := fmt.Sprintf("block at height %d forks the main chain "+
-	//		"before the previous checkpoint at height %d",
-	//		blockHeight, checkpointNode.height)
-	//	return ruleError(ErrForkTooOld, str)
-	//}
-	//
-	//// Reject outdated block versions once a majority of the network
-	//// has upgraded.  These were originally voted on by BIP0034,
-	//// BIP0065, and BIP0066.
-	//params := b.chainParams
-	//if header.Version < 2 && blockHeight >= params.BIP0034Height ||
-	//	header.Version < 3 && blockHeight >= params.BIP0066Height ||
-	//	header.Version < 4 && blockHeight >= params.BIP0065Height {
-	//
-	//	str := "new blocks with version %d are no longer valid"
-	//	str = fmt.Sprintf(str, header.Version)
-	//	return ruleError(ErrBlockVersionTooOld, str)
-	//}
 
+	fastAdd := flags&BFFastAdd == BFFastAdd
+	if !fastAdd {
+		// Ensure the difficulty specified in the block header matches
+		// the calculated difficulty based on the previous block and
+		// difficulty retarget rules.
+		expectedDifficulty, err := b.calcNextRequiredDifficulty(prevNode,
+			header.Timestamp)
+		if err != nil {
+			return err
+		}
+		blockDifficulty := header.Bits
+		if blockDifficulty != expectedDifficulty {
+			//str := "block difficulty of %d is not the expected value of %d"
+			//str = fmt.Sprintf(str, blockDifficulty, expectedDifficulty)
+			//return ruleError(ErrUnexpectedDifficulty, str)
+		}
+
+		// Ensure the timestamp for the block header is after the
+		// median time of the last several blocks (medianTimeBlocks).
+		medianTime := prevNode.CalcPastMedianTime()
+		if !header.Timestamp.After(medianTime) {
+			str := "block timestamp of %v is not after expected %v"
+			str = fmt.Sprintf(str, header.Timestamp, medianTime)
+			return ruleError(ErrTimeTooOld, str)
+		}
+	}
+
+	// The height of this block is one more than the referenced previous
+	// block.
+	blockHeight := prevNode.height + 1
+
+	// Ensure chain matches up to predetermined checkpoints.
+	blockHash := header.BlockHash()
+	if !b.verifyCheckpoint(blockHeight, &blockHash) {
+		str := fmt.Sprintf("block at height %d does not match "+
+			"checkpoint hash", blockHeight)
+		return ruleError(ErrBadCheckpoint, str)
+	}
+
+	// Find the previous checkpoint and prevent blocks which fork the main
+	// chain before it.  This prevents storage of new, otherwise valid,
+	// blocks which build off of old blocks that are likely at a much easier
+	// difficulty and therefore could be used to waste cache and disk space.
+	checkpointNode, err := b.findPreviousCheckpoint()
+	if err != nil {
+		return err
+	}
+	if checkpointNode != nil && blockHeight < checkpointNode.height {
+		str := fmt.Sprintf("block at height %d forks the main chain "+
+			"before the previous checkpoint at height %d",
+			blockHeight, checkpointNode.height)
+		return ruleError(ErrForkTooOld, str)
+	}
+
+	// Reject outdated block versions once a majority of the network
+	// has upgraded.  These were originally voted on by BIP0034,
+	// BIP0065, and BIP0066.
+	params := b.chainParams
+	if header.Version < 2 && blockHeight >= params.BIP0034Height ||
+		header.Version < 3 && blockHeight >= params.BIP0066Height ||
+		header.Version < 4 && blockHeight >= params.BIP0065Height {
+
+		str := "new blocks with version %d are no longer valid"
+		str = fmt.Sprintf(str, header.Version)
+		return ruleError(ErrBlockVersionTooOld, str)
+	}
 	return nil
 }
 
