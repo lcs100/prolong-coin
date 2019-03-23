@@ -7,14 +7,13 @@ package cpuminer
 import (
 	"errors"
 	"fmt"
-	"github.com/btcsuite/btcd/cpu"
 	"math/rand"
 	"os/exec"
 	"runtime"
 	"strings"
 	"sync"
 	"time"
-
+	"github.com/btcsuite/btcd/cpu"
 	"github.com/btcsuite/btcd/blockchain"
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
@@ -193,6 +192,8 @@ func (m *CPUMiner) submitBlock(block *btcutil.Block) bool {
 
 	// The block was accepted.
 	coinbaseTx := block.MsgBlock().Transactions[0].TxOut[0]
+	fmt.Println("hashrate: ",cpu.HashRate)
+	fmt.Println("duration: ",cpu.Duration)
 	log.Infof("Block submitted via CPU miner accepted (hash %s, "+
 		"amount %v)", block.Hash(), btcutil.Amount(coinbaseTx.Value))
 	return true
@@ -236,19 +237,8 @@ func (m *CPUMiner) solveBlock(msgBlock *wire.MsgBlock, blockHeight int32,
 	lastGenerated := time.Now()
 	lastTxUpdate := m.g.TxSource().LastUpdated()
 	hashesCompleted := uint64(0)
-	end := true
-	var wg sync.WaitGroup
-	cpuUsage := 0.0
-	count := 0.0
-	wg.Add(1)
-	go func(){
-		defer wg.Done()
-		for end {
-			cpuUsage += cpu.GetCpuUsage()
-			count+=1
-		}
-	}()
-
+	begin := float64(time.Now().UnixNano())
+	count := float64(0)
 	// Note that the entire extra nonce range is iterated and the offset is
 	// added relying on the fact that overflow will wrap around 0 as
 	// provided by the Go spec.
@@ -262,6 +252,7 @@ func (m *CPUMiner) solveBlock(msgBlock *wire.MsgBlock, blockHeight int32,
 		// periodically checking for early quit and stale block
 		// conditions along with updates to the speed monitor.
 		for i := uint32(0); i <= maxNonce; i++ {
+			count+=1
 			select {
 			case <-quit:
 				return false
@@ -305,13 +296,14 @@ func (m *CPUMiner) solveBlock(msgBlock *wire.MsgBlock, blockHeight int32,
 			// than the target difficulty.  Yay!
 			if blockchain.HashToBig(&hash).Cmp(targetDifficulty) <= 0 {
 				m.updateHashes <- hashesCompleted
-				end = false
-				cpu.CpuUsage = cpuUsage/count
+				end := float64(time.Now().UnixNano())
+				cpu.HashRate = count/((end-begin)/1e9)
+				cpu.Duration = (end - begin)/1e6
+				//fmt.Print("hash rate: ",cpu.HashRate,"\n")
 				return true
 			}
 		}
 	}
-	wg.Wait()
 	return false
 }
 

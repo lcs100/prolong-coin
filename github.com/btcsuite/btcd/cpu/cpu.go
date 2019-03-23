@@ -7,7 +7,8 @@ import (
 	"strconv"
 )
 var CpuUsage float64 = 0.0
-
+var HashRate float64 = 0
+var Duration float64 = 0.0
 func GetCpuUsage() float64{
 
 	cmd := exec.Command("/bin/sh", "-c", "sar -u 1 1")

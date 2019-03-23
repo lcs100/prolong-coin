@@ -5,6 +5,7 @@
 package main
 
 import (
+	"crypto/sha256"
 	"fmt"
 	"net"
 	"net/http"
@@ -14,10 +15,13 @@ import (
 	"runtime"
 	"runtime/debug"
 	"runtime/pprof"
+	"time"
+	"strconv"
 
 	"github.com/btcsuite/btcd/blockchain/indexers"
 	"github.com/btcsuite/btcd/database"
 	"github.com/btcsuite/btcd/limits"
+	"github.com/btcsuite/btcd/cpu"
 )
 
 const (
@@ -298,14 +302,21 @@ func loadBlockDB() (database.DB, error) {
 
 func main() {
 	// Use all processor cores.
-	runtime.GOMAXPROCS(runtime.NumCPU())
-
+	//runtime.GOMAXPROCS(runtime.NumCPU())
+	runtime.GOMAXPROCS(1)
 	// Block and transaction processing can cause bursty allocations.  This
 	// limits the garbage collector from excessively overallocating during
 	// bursts.  This value was arrived at with the help of profiling live
 	// usage.
-	debug.SetGCPercent(10)
 
+	debug.SetGCPercent(10)
+	begin := float64(time.Now().UnixNano())
+	for i:=0;i<1e6;i++ {
+		sha256.Sum256([]byte(strconv.Itoa(i)))
+	}
+	end := float64(time.Now().UnixNano())
+	cpu.HashRate = 0.05 * float64(1e6)/((end-begin)/1e9)
+	//panic("end")
 	// Up some limits.
 	if err := limits.SetLimits(); err != nil {
 		fmt.Fprintf(os.Stderr, "failed to set limits: %v\n", err)
