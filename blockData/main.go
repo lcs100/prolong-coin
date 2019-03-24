@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"fmt"
 	"database/sql"
-	_"github.com/go-sql-driver/mysql"
+	_"mysql"
 )
 
 const (
