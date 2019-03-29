@@ -10,7 +10,6 @@ import (
 	"github.com/btcsuite/btcd/cpu"
 	"math/big"
 	"time"
-	"math"
 )
 
 var (
@@ -248,8 +247,9 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 	}
 	oldTarget := CompactToBig(lastNode.bits)
 	newTarget := new(big.Int).Mul(oldTarget, big.NewInt(adjustedTimespan))
-	arg := int64(math.Log2(cpu.HashRate))
-	newTarget.Div(CompactToBig(chaincfg.SimNetParams.PowLimitBits), big.NewInt(arg))
+	//arg := int64(math.Log2(cpu.HashRate))
+	arg := int64(cpu.HashRate/1000)
+	newTarget = new(big.Int).Div(CompactToBig(chaincfg.SimNetParams.PowLimitBits), big.NewInt(arg))
 	if newTarget.Cmp(b.chainParams.PowLimit) > 0 {
 		newTarget.Set(b.chainParams.PowLimit)
 	}
