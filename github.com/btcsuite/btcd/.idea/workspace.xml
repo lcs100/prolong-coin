@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bbb550c0-896a-49f9-b0d5-3d564d75888e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../blockData/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../../blockData/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chaincfg/params.go" beforeDir="false" afterPath="$PROJECT_DIR$/chaincfg/params.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../btcwallet" beforeDir="false" afterPath="$PROJECT_DIR$/../btcwallet" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../lightningnetwork/lnd" beforeDir="false" afterPath="$PROJECT_DIR$/../../lightningnetwork/lnd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../golang.org/x/crypto" beforeDir="false" afterPath="$PROJECT_DIR$/../../../golang.org/x/crypto" afterDir="false" />
