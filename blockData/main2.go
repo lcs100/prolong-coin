@@ -28,9 +28,12 @@ func main() {
 	}
 
  	data := make(map[string]int)
-	data["SgyPztP3aGG9KRKrnhGK67Z7wbsaGwqQRE"] = 0
-	data["SZ68SFfPvWfAxycFGWiAoc6PkDgfzkbfoJ"] = 0
-	data["SNTsvpxn3ryxhvP749t3ykBHZCUhDaCeeb"] = 0
+	address := make(map[string]string)
+	address["SgyPztP3aGG9KRKrnhGK67Z7wbsaGwqQRE"] = "VM"
+	address["SNTsvpxn3ryxhvP749t3ykBHZCUhDaCeeb"] = "HuaWei"
+	address["SZ68SFfPvWfAxycFGWiAoc6PkDgfzkbfoJ"] = "Tencent"
+	address["SVcRE7hfK6db2VZhzGPjiSn9VjofkUSG8t"] = "Linode"
+	address["SanecaPK6oW8ywAJGi5ZccHnV3FvgYthM3"] = "Vultr(140)"
 	// Query the RPC server for the current block count and display it.
 	blockCount ,_ := client.GetBlockCount()
 	for blockId := int64(1); blockId<= blockCount;blockId ++ {
@@ -43,7 +46,7 @@ func main() {
 		tx,_:= client.GetRawTransactionVerbose(txHash)
 		miner := tx.Vout[0].ScriptPubKey.Addresses[0]
 		fmt.Println(nonce,bits,timeStamp,miner)
-		data[miner] +=1
+		data[address[miner]] +=1
 	}
 	fmt.Println(data)
 	defer client.Shutdown()

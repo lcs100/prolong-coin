@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbb550c0-896a-49f9-b0d5-3d564d75888e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../blockData/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../../blockData/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../btcwallet" beforeDir="false" afterPath="$PROJECT_DIR$/../btcwallet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../lightningnetwork/lnd" beforeDir="false" afterPath="$PROJECT_DIR$/../../lightningnetwork/lnd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../golang.org/x/crypto" beforeDir="false" afterPath="$PROJECT_DIR$/../../../golang.org/x/crypto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../golang.org/x/net" beforeDir="false" afterPath="$PROJECT_DIR$/../../../golang.org/x/net" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../golang.org/x/sys" beforeDir="false" afterPath="$PROJECT_DIR$/../../../golang.org/x/sys" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../golang.org/x/text" beforeDir="false" afterPath="$PROJECT_DIR$/../../../golang.org/x/text" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../google.golang.org/genproto" beforeDir="false" afterPath="$PROJECT_DIR$/../../../google.golang.org/genproto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../google.golang.org/grpc" beforeDir="false" afterPath="$PROJECT_DIR$/../../../google.golang.org/grpc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../blockData/main2.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../../blockData/main2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +23,18 @@
               <caret line="323" column="5" selection-start-line="323" selection-start-column="5" selection-end-line="323" selection-end-column="5" />
               <folding>
                 <element signature="e#165#478#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="630">
+              <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+              <folding>
+                <element signature="e#165#738#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -62,11 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blockchain/difficulty.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="251" column="35" selection-start-line="251" selection-start-column="35" selection-end-line="251" selection-end-column="35" />
-              <folding>
-                <element signature="e#171#323#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="306">
+              <caret line="252" column="64" selection-start-line="252" selection-start-column="64" selection-end-line="252" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -74,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cmd/addblock/import.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="204" column="30" lean-forward="true" selection-start-line="204" selection-start-column="30" selection-end-line="204" selection-end-column="30" />
+            <state relative-caret-position="2865">
+              <caret line="204" column="30" selection-start-line="204" selection-start-column="30" selection-end-line="204" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -88,6 +90,15 @@
               <folding>
                 <element signature="e#169#309#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../btcutil/appdata.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="91" column="2" lean-forward="true" selection-start-line="91" selection-start-column="2" selection-end-line="91" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -203,27 +214,6 @@
               <item name="btcd" type="b2602c69:ProjectViewProjectNode" />
               <item name="btcd" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="btcd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="btcd" type="462c0819:PsiDirectoryNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="btcd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="btcd" type="462c0819:PsiDirectoryNode" />
-              <item name="mining" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="btcd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="btcd" type="462c0819:PsiDirectoryNode" />
-              <item name="mining" type="462c0819:PsiDirectoryNode" />
-              <item name="cpuminer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="btcd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="btcd" type="462c0819:PsiDirectoryNode" />
-              <item name="netsync" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -261,8 +251,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13598673" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13764511" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -287,13 +278,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/btcjson/chainsvrwsresults.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/btcjson/chainsvrresults_test.go">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -323,16 +307,6 @@
     </entry>
     <entry file="file://$USER_HOME$/test.go" />
     <entry file="file://$PROJECT_DIR$/../../../../../main.go" />
-    <entry file="file://$PROJECT_DIR$/config.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="58" column="56" lean-forward="true" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
-          <folding>
-            <element signature="e#165#738#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/go/src/math/big/nat.go" />
     <entry file="file://$PROJECT_DIR$/params.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -525,6 +499,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+          <folding>
+            <element signature="e#165#738#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mining/cpuminer/cpuminer.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4260">
@@ -542,6 +526,13 @@
           <folding>
             <element signature="e#13#63#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/addblock/import.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2865">
+          <caret line="204" column="30" selection-start-line="204" selection-start-column="30" selection-end-line="204" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -569,20 +560,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmd/addblock/import.go">
+    <entry file="file://$PROJECT_DIR$/../btcutil/appdata.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="204" column="30" lean-forward="true" selection-start-line="204" selection-start-column="30" selection-end-line="204" selection-end-column="30" />
+        <state relative-caret-position="291">
+          <caret line="91" column="2" lean-forward="true" selection-start-line="91" selection-start-column="2" selection-end-line="91" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blockchain/difficulty.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="251" column="35" selection-start-line="251" selection-start-column="35" selection-end-line="251" selection-end-column="35" />
-          <folding>
-            <element signature="e#171#323#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="306">
+          <caret line="252" column="64" selection-start-line="252" selection-start-column="64" selection-end-line="252" selection-end-column="64" />
         </state>
       </provider>
     </entry>

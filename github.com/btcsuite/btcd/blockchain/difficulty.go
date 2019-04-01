@@ -8,6 +8,7 @@ import (
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/btcsuite/btcd/cpu"
+	"math"
 	"math/big"
 	"time"
 )
@@ -214,6 +215,19 @@ func (b *BlockChain) findPrevTestNetDifficulty(startNode *blockNode) uint32 {
 	return lastBits
 }
 
+
+func pow(x, n int) int {
+    ret := 1 
+    for n != 0 {
+        if n%2 != 0 {
+            ret = ret * x
+        }
+        n /= 2
+        x = x * x
+    }
+    return ret
+}
+
 // my fucntion
 func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTime time.Time) (uint32, error) {
 	// Genesis block.
@@ -248,7 +262,9 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 	oldTarget := CompactToBig(lastNode.bits)
 	newTarget := new(big.Int).Mul(oldTarget, big.NewInt(adjustedTimespan))
 	//arg := int64(math.Log2(cpu.HashRate))
-	arg := int64(cpu.HashRate/1000)
+        n:=cpu.HashRate/1000
+	arg := int64(math.Sqrt(cpu.HashRate/1000))
+	arg = int64(math.Pow(n,0.65))
 	newTarget = new(big.Int).Div(CompactToBig(chaincfg.SimNetParams.PowLimitBits), big.NewInt(arg))
 	if newTarget.Cmp(b.chainParams.PowLimit) > 0 {
 		newTarget.Set(b.chainParams.PowLimit)
