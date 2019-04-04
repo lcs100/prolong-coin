@@ -194,6 +194,10 @@ func (m *CPUMiner) submitBlock(block *btcutil.Block) bool {
 	coinbaseTx := block.MsgBlock().Transactions[0].TxOut[0]
 	fmt.Println("hashrate: ",cpu.HashRate)
 	fmt.Println("duration: ",cpu.Duration)
+	fmt.Println("hashcount: ",cpu.HashCount)
+	fmt.Println("time: ",cpu.HashCount/cpu.HashRate)
+	fmt.Println("average: ",cpu.TotalCount/cpu.TotalDuration)
+	fmt.Println("each block time: ",cpu.TotalDuration/cpu.BlockCount)
 	log.Infof("Block submitted via CPU miner accepted (hash %s, "+
 		"amount %v)", block.Hash(), btcutil.Amount(coinbaseTx.Value))
 	return true
@@ -298,7 +302,11 @@ func (m *CPUMiner) solveBlock(msgBlock *wire.MsgBlock, blockHeight int32,
 				m.updateHashes <- hashesCompleted
 				end := float64(time.Now().UnixNano())
 				cpu.HashRate = count/((end-begin)/1e9)
-				cpu.Duration = (end - begin)/1e6
+				cpu.Duration = (end - begin)/1e9
+				cpu.HashCount = count
+				cpu.TotalCount += count
+                                cpu.TotalDuration += cpu.Duration
+				cpu.BlockCount += 1
 				//fmt.Print("hash rate: ",cpu.HashRate,"\n")
 				return true
 			}

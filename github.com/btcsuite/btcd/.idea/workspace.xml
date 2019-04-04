@@ -7,6 +7,9 @@
     <list default="true" id="bbb550c0-896a-49f9-b0d5-3d564d75888e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../blockData/main2.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../../blockData/main2.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blockchain/difficulty.go" beforeDir="false" afterPath="$PROJECT_DIR$/blockchain/difficulty.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpu/cpu.go" beforeDir="false" afterPath="$PROJECT_DIR$/cpu/cpu.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mining/cpuminer/cpuminer.go" beforeDir="false" afterPath="$PROJECT_DIR$/mining/cpuminer/cpuminer.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,67 +20,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/btcd.go">
+        <entry file="file://$PROJECT_DIR$/blockchain/difficulty.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4575">
-              <caret line="323" column="5" selection-start-line="323" selection-start-column="5" selection-end-line="323" selection-end-column="5" />
-              <folding>
-                <element signature="e#165#478#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
-              <folding>
-                <element signature="e#165#738#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mining/cpuminer/cpuminer.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4260">
-              <caret line="300" column="20" selection-start-line="300" selection-start-column="20" selection-end-line="300" selection-end-column="20" />
-              <folding>
-                <element signature="e#169#512#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cpu/cpu.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-              <folding>
-                <element signature="e#13#63#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="89">
+              <caret line="381" column="37" selection-start-line="381" selection-start-column="37" selection-end-line="381" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/blockchain/difficulty.go">
+        <entry file="file://$PROJECT_DIR$/blockchain/validate.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="252" column="64" selection-start-line="252" selection-start-column="64" selection-end-line="252" selection-end-column="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cmd/addblock/import.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2865">
-              <caret line="204" column="30" selection-start-line="204" selection-start-column="30" selection-end-line="204" selection-end-column="30" />
+            <state relative-caret-position="-468">
+              <caret line="643" column="44" selection-start-line="643" selection-start-column="21" selection-end-line="643" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -85,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/chaincfg/params.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7425">
-              <caret line="504" column="19" selection-start-line="504" selection-start-column="19" selection-end-line="504" selection-end-column="19" />
+            <state relative-caret-position="66">
+              <caret line="499" column="26" lean-forward="true" selection-start-line="499" selection-start-column="26" selection-end-line="499" selection-end-column="26" />
               <folding>
                 <element signature="e#169#309#0" expanded="true" />
               </folding>
@@ -95,10 +50,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../btcutil/appdata.go">
+        <entry file="file://$PROJECT_DIR$/btcd.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="91" column="2" lean-forward="true" selection-start-line="91" selection-start-column="2" selection-end-line="91" selection-end-column="2" />
+            <state relative-caret-position="4470">
+              <caret line="316" column="26" selection-start-line="316" selection-start-column="26" selection-end-line="316" selection-end-column="26" />
+              <folding>
+                <element signature="e#165#478#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -115,8 +73,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/chaincfg/genesis.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2505">
-              <caret line="172" selection-start-line="172" selection-end-line="172" />
+            <state relative-caret-position="2340">
+              <caret line="161" column="33" selection-start-line="161" selection-start-column="33" selection-end-line="161" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wire/msgblock.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="555">
+              <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wire/blockheader.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="735">
+              <caret line="55" column="45" selection-start-line="55" selection-start-column="45" selection-end-line="55" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blockchain/chain.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18720">
+              <caret line="1260" column="21" selection-start-line="1260" selection-start-column="21" selection-end-line="1260" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mining/mining.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3756">
+              <caret line="442" column="43" selection-start-line="442" selection-start-column="27" selection-end-line="442" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -132,9 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>== 0</find>
-      <find>difficulty</find>
-      <find>connect</find>
       <find>fmt</find>
       <find>Pow</find>
       <find>checkblock</find>
@@ -162,6 +153,9 @@
       <find>millise</find>
       <find>hashrate</find>
       <find>cert</find>
+      <find>HashRate</find>
+      <find>Msg</find>
+      <find>Msgblock</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="/opt/go" />
@@ -187,9 +181,9 @@
         <option value="$PROJECT_DIR$/../../../../../cpu.go" />
         <option value="$PROJECT_DIR$/btcd.go" />
         <option value="$PROJECT_DIR$/cpu/cpu.go" />
-        <option value="$PROJECT_DIR$/mining/cpuminer/cpuminer.go" />
         <option value="$PROJECT_DIR$/chaincfg/params.go" />
         <option value="$PROJECT_DIR$/../../../blockData/main.go" />
+        <option value="$PROJECT_DIR$/mining/cpuminer/cpuminer.go" />
         <option value="$PROJECT_DIR$/blockchain/difficulty.go" />
       </list>
     </option>
@@ -213,6 +207,16 @@
             <path>
               <item name="btcd" type="b2602c69:ProjectViewProjectNode" />
               <item name="btcd" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="btcd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="btcd" type="462c0819:PsiDirectoryNode" />
+              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="btcd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="btcd" type="462c0819:PsiDirectoryNode" />
+              <item name="wire" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -253,7 +257,7 @@
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13764511" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.05583195" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -266,7 +270,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32706374" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.1630094" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -318,13 +322,6 @@
     <entry file="file://$PROJECT_DIR$/../../../../../test.go" />
     <entry file="file://$PROJECT_DIR$/../../../../../test2.go" />
     <entry file="file:///usr/local/go/src/math/big/int.go" />
-    <entry file="file://$PROJECT_DIR$/mining/mining.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12375">
-          <caret line="837" column="52" selection-start-line="837" selection-start-column="42" selection-end-line="837" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data.py" />
     <entry file="file://$PROJECT_DIR$/btcjson/btcdextcmds.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -341,13 +338,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blockchain/validate.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10725">
-          <caret line="727" column="38" selection-start-line="727" selection-start-column="38" selection-end-line="727" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/analysis.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -357,13 +347,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/btcjson/cmdinfo.go">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blockchain/chain.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18720">
-          <caret line="1260" column="21" selection-start-line="1260" selection-start-column="21" selection-end-line="1260" selection-end-column="21" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/integration/rpcserver_test.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -394,13 +377,6 @@
           <folding>
             <element signature="e#168#303#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wire/blockheader.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -468,13 +444,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wire/msgblock.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../../cpu.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -489,32 +458,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/btcd.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4575">
-          <caret line="323" column="5" selection-start-line="323" selection-start-column="5" selection-end-line="323" selection-end-column="5" />
-          <folding>
-            <element signature="e#165#478#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
           <folding>
             <element signature="e#165#738#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mining/cpuminer/cpuminer.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4260">
-          <caret line="300" column="20" selection-start-line="300" selection-start-column="20" selection-end-line="300" selection-end-column="20" />
-          <folding>
-            <element signature="e#169#512#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -536,12 +485,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chaincfg/params.go">
+    <entry file="file://$PROJECT_DIR$/../btcutil/appdata.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7425">
-          <caret line="504" column="19" selection-start-line="504" selection-start-column="19" selection-end-line="504" selection-end-column="19" />
+        <state relative-caret-position="1260">
+          <caret line="91" column="2" selection-start-line="91" selection-start-column="2" selection-end-line="91" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mining/cpuminer/cpuminer.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
           <folding>
-            <element signature="e#169#309#0" expanded="true" />
+            <element signature="e#169#512#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/btcd.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4470">
+          <caret line="316" column="26" selection-start-line="316" selection-start-column="26" selection-end-line="316" selection-end-column="26" />
+          <folding>
+            <element signature="e#165#478#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -555,22 +521,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chaincfg/genesis.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2505">
-          <caret line="172" selection-start-line="172" selection-end-line="172" />
+        <state relative-caret-position="2340">
+          <caret line="161" column="33" selection-start-line="161" selection-start-column="33" selection-end-line="161" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../btcutil/appdata.go">
+    <entry file="file://$PROJECT_DIR$/wire/msgblock.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="91" column="2" lean-forward="true" selection-start-line="91" selection-start-column="2" selection-end-line="91" selection-end-column="2" />
+        <state relative-caret-position="555">
+          <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wire/blockheader.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="55" column="45" selection-start-line="55" selection-start-column="45" selection-end-line="55" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blockchain/chain.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18720">
+          <caret line="1260" column="21" selection-start-line="1260" selection-start-column="21" selection-end-line="1260" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincfg/params.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="499" column="26" lean-forward="true" selection-start-line="499" selection-start-column="26" selection-end-line="499" selection-end-column="26" />
+          <folding>
+            <element signature="e#169#309#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mining/mining.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3756">
+          <caret line="442" column="43" selection-start-line="442" selection-start-column="27" selection-end-line="442" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blockchain/difficulty.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="252" column="64" selection-start-line="252" selection-start-column="64" selection-end-line="252" selection-end-column="64" />
+        <state relative-caret-position="89">
+          <caret line="381" column="37" selection-start-line="381" selection-start-column="37" selection-end-line="381" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blockchain/validate.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-468">
+          <caret line="643" column="44" selection-start-line="643" selection-start-column="21" selection-end-line="643" selection-end-column="44" />
         </state>
       </provider>
     </entry>

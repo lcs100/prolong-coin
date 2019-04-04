@@ -262,9 +262,9 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 	oldTarget := CompactToBig(lastNode.bits)
 	newTarget := new(big.Int).Mul(oldTarget, big.NewInt(adjustedTimespan))
 	//arg := int64(math.Log2(cpu.HashRate))
-        n:=cpu.HashRate/1000
+	n:=cpu.HashRate/1000
 	arg := int64(math.Sqrt(cpu.HashRate/1000))
-	arg = int64(math.Pow(n,0.65))
+	arg = int64(n)
 	newTarget = new(big.Int).Div(CompactToBig(chaincfg.SimNetParams.PowLimitBits), big.NewInt(arg))
 	if newTarget.Cmp(b.chainParams.PowLimit) > 0 {
 		newTarget.Set(b.chainParams.PowLimit)
