@@ -39,13 +39,13 @@ func main() {
 	for blockId := int64(1); blockId<= blockCount;blockId ++ {
 		blockHash,_ := client.GetBlockHash(blockId)
 		block,_ := client.GetBlockVerbose(blockHash)
-		nonce := block.Nonce
-		bits := block.Bits
-		timeStamp := block.Time
+	//	nonce := block.Nonce
+	//	bits := block.Bits
+	//	timeStamp := block.Time
 		txHash,_ := chainhash.NewHashFromStr(block.Tx[0])
 		tx,_:= client.GetRawTransactionVerbose(txHash)
 		miner := tx.Vout[0].ScriptPubKey.Addresses[0]
-		fmt.Println(nonce,bits,timeStamp,miner)
+		//fmt.Println(nonce,bits,timeStamp,miner)
 		data[address[miner]] +=1
 	}
 	fmt.Println(data)

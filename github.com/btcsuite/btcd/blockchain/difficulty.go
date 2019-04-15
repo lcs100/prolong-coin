@@ -8,7 +8,6 @@ import (
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/btcsuite/btcd/cpu"
-	"math"
 	"math/big"
 	"time"
 )
@@ -260,12 +259,13 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 		adjustedTimespan = b.maxRetargetTimespan
 	}
 	oldTarget := CompactToBig(lastNode.bits)
-	newTarget := new(big.Int).Mul(oldTarget, big.NewInt(adjustedTimespan))
+	//newTarget := new(big.Int).Mul(oldTarget, big.NewInt(adjustedTimespan))
+	newTarget := big.NewInt(calDifficulty(cpu.HashRate))
 	//arg := int64(math.Log2(cpu.HashRate))
-	n:=cpu.HashRate/1000
-	arg := int64(math.Sqrt(cpu.HashRate/1000))
-	arg = int64(n)
-	newTarget = new(big.Int).Div(CompactToBig(chaincfg.SimNetParams.PowLimitBits), big.NewInt(arg))
+	//n:=cpu.HashRate/1000
+	//arg := int64(math.Sqrt(cpu.HashRate/1000))
+	//arg = int64(n)
+	//newTarget = new(big.Int).Div(CompactToBig(chaincfg.SimNetParams.PowLimitBits), big.NewInt(arg))
 	if newTarget.Cmp(b.chainParams.PowLimit) > 0 {
 		newTarget.Set(b.chainParams.PowLimit)
 	}
@@ -277,7 +277,19 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 		time.Duration(actualTimespan)*time.Second,
 		time.Duration(adjustedTimespan)*time.Second,
 		b.chainParams.TargetTimespan)
-	return newTargetBits, nil
+	return lastNode.bits, nil
+}
+
+func calDifficulty(hashRate float64) int64 {
+	A := 40000.0
+	C := CompactToBig(chaincfg.SimNetParams.PowLimitBits)
+	return int64(hashRate*float64(C.Uint64())/A)
+	/**
+	K := float64(1<<256)
+	X := float64(A*math.Log(K-float64(C.Uint64())))
+	Y := (hashRate-A)*math.Log(K)
+	return int64(K - math.Pow(math.E,float64(X-Y)/hashRate))
+	**/
 }
 
 //original function
