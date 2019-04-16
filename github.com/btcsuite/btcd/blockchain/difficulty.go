@@ -260,15 +260,15 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 	}
 	oldTarget := CompactToBig(lastNode.bits)
 	//newTarget := new(big.Int).Mul(oldTarget, big.NewInt(adjustedTimespan))
-	newTarget := big.NewInt(calDifficulty(cpu.HashRate))
 	//arg := int64(math.Log2(cpu.HashRate))
-	//n:=cpu.HashRate/1000
+	//n:=cpu.HashRate
 	//arg := int64(math.Sqrt(cpu.HashRate/1000))
-	//arg = int64(n)
-	//newTarget = new(big.Int).Div(CompactToBig(chaincfg.SimNetParams.PowLimitBits), big.NewInt(arg))
-	if newTarget.Cmp(b.chainParams.PowLimit) > 0 {
-		newTarget.Set(b.chainParams.PowLimit)
-	}
+	//arg := int64(n)
+	//newTarget := new(big.Int).Div(CompactToBig(chaincfg.SimNetParams.PowLimitBits), big.NewInt(arg))
+	newTarget := calDiff(cpu.HashRate)
+	//if newTarget.Cmp(b.chainParams.PowLimit) > 0 {
+	//	newTarget.Set(b.chainParams.PowLimit)
+	//}
 	newTargetBits := BigToCompact(newTarget)
 	log.Debugf("Difficulty retarget at block height %d", lastNode.height+1)
 	log.Debugf("Old target %08x (%064x)", lastNode.bits, oldTarget)
@@ -277,19 +277,16 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 		time.Duration(actualTimespan)*time.Second,
 		time.Duration(adjustedTimespan)*time.Second,
 		b.chainParams.TargetTimespan)
-	return lastNode.bits, nil
+	return newTargetBits, nil
 }
 
-func calDifficulty(hashRate float64) int64 {
-	A := 40000.0
+
+func calDiff(hashRate float64) *big.Int{
+	A := big.NewInt(40000)
 	C := CompactToBig(chaincfg.SimNetParams.PowLimitBits)
-	return int64(hashRate*float64(C.Uint64())/A)
-	/**
-	K := float64(1<<256)
-	X := float64(A*math.Log(K-float64(C.Uint64())))
-	Y := (hashRate-A)*math.Log(K)
-	return int64(K - math.Pow(math.E,float64(X-Y)/hashRate))
-	**/
+	B := big.NewInt(int64(hashRate))
+	res := new(big.Int).Div((new(big.Int).Mul(A,C)),B)
+	return res
 }
 
 //original function
