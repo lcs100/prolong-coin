@@ -211,7 +211,7 @@ func (m *CPUMiner) submitBlock(block *btcutil.Block) bool {
 	return true
 }
 func recordHash(rate float64)  {
-	fd,_:=os.OpenFile("/home/hht/work/code/rate.txt",os.O_RDWR|os.O_CREATE|os.O_APPEND,0644)
+	fd,_:=os.OpenFile("../../rate.txt",os.O_RDWR|os.O_CREATE|os.O_APPEND,0644)
 	fd_content:=strings.Join([]string{strconv.FormatFloat(rate, 'f', -1, 64),"\n"},"")
 	buf:=[]byte(fd_content)
 	fd.Write(buf)
