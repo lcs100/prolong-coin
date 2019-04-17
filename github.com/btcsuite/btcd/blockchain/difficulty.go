@@ -277,9 +277,17 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 		time.Duration(actualTimespan)*time.Second,
 		time.Duration(adjustedTimespan)*time.Second,
 		b.chainParams.TargetTimespan)
-	return newTargetBits, nil
+	return lastNode.bits, nil
 }
 
+/**
+func calDiff(hashRate float64) *big.Int{
+	A := big.NewInt(40000)
+	C := CompactToBig(chaincfg.SimNetParams.PowLimitBits)
+	B := big.NewInt(int64(hashRate))
+	res := new(big.Int).Div((new(big.Int).Mul(A,C)),B)
+	return res
+}**/
 
 func calDiff(hashRate float64) *big.Int{
 	A := big.NewInt(40000)

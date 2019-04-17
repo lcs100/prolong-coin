@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"math/rand"
+	"os"
 	"os/exec"
 	"runtime"
 	"strings"
@@ -20,6 +21,7 @@ import (
 	"github.com/btcsuite/btcd/mining"
 	"github.com/btcsuite/btcd/wire"
 	"github.com/btcsuite/btcutil"
+	"strconv"
 )
 
 const (
@@ -47,6 +49,7 @@ var (
 	// and is based on the number of processor cores.  This helps ensure the
 	// system stays reasonably responsive under heavy load.
 	defaultNumWorkers = uint32(runtime.NumCPU())
+	miningCount float64 = 0.0
 )
 
 // Config is a descriptor containing the cpu miner configuration.
@@ -192,16 +195,29 @@ func (m *CPUMiner) submitBlock(block *btcutil.Block) bool {
 
 	// The block was accepted.
 	coinbaseTx := block.MsgBlock().Transactions[0].TxOut[0]
-	fmt.Println("hashrate: ",cpu.HashRate)
-	fmt.Println("duration: ",cpu.Duration)
+	cpu.BlockCount += 1
+	cpu.TotalCount += miningCount
+	//fmt.Println("hashrate: ",cpu.HashRate)
+	//fmt.Println("duration: ",cpu.Duration)
 	fmt.Println("hashcount: ",cpu.HashCount)
-	fmt.Println("time: ",cpu.HashCount/cpu.HashRate)
-	fmt.Println("average: ",cpu.TotalCount/cpu.TotalDuration)
-	fmt.Println("each block time: ",cpu.TotalDuration/cpu.BlockCount)
+	//fmt.Println("time: ",cpu.HashCount/cpu.HashRate)
+	//fmt.Println("average: ",cpu.TotalCount/cpu.TotalDuration)
+	//fmt.Println("each block time: ",cpu.TotalDuration/cpu.BlockCount)
+	fmt.Println("blockCount: ",cpu.BlockCount)
+	fmt.Println("rate: ",cpu.TotalCount/cpu.BlockCount)
+	recordHash(miningCount)
 	log.Infof("Block submitted via CPU miner accepted (hash %s, "+
 		"amount %v)", block.Hash(), btcutil.Amount(coinbaseTx.Value))
 	return true
 }
+func recordHash(rate float64)  {
+	fd,_:=os.OpenFile("/home/hht/work/code/rate.txt",os.O_RDWR|os.O_CREATE|os.O_APPEND,0644)
+	fd_content:=strings.Join([]string{strconv.FormatFloat(rate, 'f', -1, 64),"\n"},"")
+	buf:=[]byte(fd_content)
+	fd.Write(buf)
+	fd.Close()
+}
+
 func execCommand(arg string) string {
 
 	cmd := exec.Command("/bin/sh", "-c", arg)
@@ -304,9 +320,8 @@ func (m *CPUMiner) solveBlock(msgBlock *wire.MsgBlock, blockHeight int32,
 				cpu.HashRate = count/((end-begin)/1e9)
 				cpu.Duration = (end - begin)/1e9
 				cpu.HashCount = count
-				cpu.TotalCount += count
-                                cpu.TotalDuration += cpu.Duration
-				cpu.BlockCount += 1
+				miningCount = count
+				cpu.TotalDuration += cpu.Duration
 				//fmt.Print("hash rate: ",cpu.HashRate,"\n")
 				return true
 			}
