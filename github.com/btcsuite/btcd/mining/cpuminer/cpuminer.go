@@ -197,12 +197,12 @@ func (m *CPUMiner) submitBlock(block *btcutil.Block) bool {
 	coinbaseTx := block.MsgBlock().Transactions[0].TxOut[0]
 	cpu.BlockCount += 1
 	cpu.TotalCount += miningCount
-	//fmt.Println("hashrate: ",cpu.HashRate)
-	//fmt.Println("duration: ",cpu.Duration)
+	fmt.Println("hashrate: ",cpu.HashRate)
+	fmt.Println("duration: ",cpu.Duration)
 	fmt.Println("hashcount: ",cpu.HashCount)
-	//fmt.Println("time: ",cpu.HashCount/cpu.HashRate)
-	//fmt.Println("average: ",cpu.TotalCount/cpu.TotalDuration)
-	//fmt.Println("each block time: ",cpu.TotalDuration/cpu.BlockCount)
+	fmt.Println("time: ",cpu.HashCount/cpu.HashRate)
+	fmt.Println("average: ",cpu.TotalCount/cpu.TotalDuration)
+	fmt.Println("each block time: ",cpu.TotalDuration/cpu.BlockCount)
 	fmt.Println("blockCount: ",cpu.BlockCount)
 	fmt.Println("rate: ",cpu.TotalCount/cpu.BlockCount)
 	recordHash(miningCount)
