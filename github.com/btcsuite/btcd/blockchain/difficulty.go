@@ -279,7 +279,6 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 		b.chainParams.TargetTimespan)
 	return newTargetBits, nil
 }
-
 /**
 func calDiff(hashRate float64) *big.Int{
 	A := big.NewInt(40000)
