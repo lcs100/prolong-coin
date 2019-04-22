@@ -13,6 +13,7 @@ var HashCount float64 = 0.0
 var TotalCount float64 = 0.0
 var TotalDuration float64 = 0.0
 var BlockCount float64 = 0.0
+var StartTime  int64 = 0
 func GetCpuUsage() float64{
 
 	cmd := exec.Command("/bin/sh", "-c", "sar -u 1 1")

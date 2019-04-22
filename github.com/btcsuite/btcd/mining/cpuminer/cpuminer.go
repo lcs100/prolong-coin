@@ -197,12 +197,12 @@ func (m *CPUMiner) submitBlock(block *btcutil.Block) bool {
 	coinbaseTx := block.MsgBlock().Transactions[0].TxOut[0]
 	cpu.BlockCount += 1
 	cpu.TotalCount += miningCount
-	//fmt.Println("hashrate: ",cpu.HashRate)
-	//fmt.Println("duration: ",cpu.Duration)
+	fmt.Println("hashrate: ",cpu.HashRate)
+	fmt.Println("duration: ",cpu.Duration)
 	fmt.Println("hashcount: ",cpu.HashCount)
-	//fmt.Println("time: ",cpu.HashCount/cpu.HashRate)
-	//fmt.Println("average: ",cpu.TotalCount/cpu.TotalDuration)
-	//fmt.Println("each block time: ",cpu.TotalDuration/cpu.BlockCount)
+	fmt.Println("time: ",cpu.HashCount/cpu.HashRate)
+	fmt.Println("average: ",cpu.TotalCount/cpu.TotalDuration)
+	fmt.Println("each block time: ",cpu.TotalDuration/cpu.BlockCount)
 	fmt.Println("blockCount: ",cpu.BlockCount)
 	fmt.Println("rate: ",cpu.TotalCount/cpu.BlockCount)
 	recordHash(miningCount)
@@ -211,7 +211,7 @@ func (m *CPUMiner) submitBlock(block *btcutil.Block) bool {
 	return true
 }
 func recordHash(rate float64)  {
-	fd,_:=os.OpenFile("/home/hht/work/code/rate.txt",os.O_RDWR|os.O_CREATE|os.O_APPEND,0644)
+	fd,_:=os.OpenFile("../../rate.txt",os.O_RDWR|os.O_CREATE|os.O_APPEND,0644)
 	fd_content:=strings.Join([]string{strconv.FormatFloat(rate, 'f', -1, 64),"\n"},"")
 	buf:=[]byte(fd_content)
 	fd.Write(buf)
@@ -398,6 +398,10 @@ out:
 		if m.solveBlock(template.Block, curHeight+1, ticker, quit) {
 			block := btcutil.NewBlock(template.Block)
 			m.submitBlock(block)
+			endTime := time.Now().Unix()
+			if endTime - cpu.StartTime >= 1200{
+				panic("end")
+			}
 		}
 	}
 

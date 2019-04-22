@@ -17,7 +17,6 @@ import (
 	"runtime/pprof"
 	"time"
 	"strconv"
-
 	"github.com/btcsuite/btcd/blockchain/indexers"
 	"github.com/btcsuite/btcd/database"
 	"github.com/btcsuite/btcd/limits"
@@ -318,6 +317,7 @@ func main() {
 	cpu.HashRate = 0.05 * float64(1e6)/((end-begin)/1e9)
 	//panic("end")
 	// Up some limits.
+	cpu.StartTime = time.Now().Unix();
 	if err := limits.SetLimits(); err != nil {
 		fmt.Fprintf(os.Stderr, "failed to set limits: %v\n", err)
 		os.Exit(1)
