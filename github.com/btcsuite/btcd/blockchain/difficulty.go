@@ -1,13 +1,10 @@
-// Copyright (c) 2013-2017 The btcsuite developers
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
 
 package blockchain
 
 import (
-	"github.com/btcsuite/btcd/chaincfg"
+//	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
-	"github.com/btcsuite/btcd/cpu"
+//	"github.com/btcsuite/btcd/cpu"
 	"math/big"
 	"time"
 )
@@ -228,6 +225,7 @@ func pow(x, n int) int {
 }
 
 // my fucntion
+/**
 func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTime time.Time) (uint32, error) {
 	// Genesis block.
 	if lastNode == nil {
@@ -279,7 +277,7 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 		b.chainParams.TargetTimespan)
 	return newTargetBits, nil
 }
-/**
+
 func calDiff(hashRate float64) *big.Int{
 	A := big.NewInt(40000)
 	C := CompactToBig(chaincfg.SimNetParams.PowLimitBits)
@@ -288,85 +286,77 @@ func calDiff(hashRate float64) *big.Int{
 	return res
 }**/
 
-func calDiff(hashRate float64) *big.Int{
-	A := big.NewInt(40000)
-	C := CompactToBig(chaincfg.SimNetParams.PowLimitBits)
-	B := big.NewInt(int64(hashRate))
-	res := new(big.Int).Div((new(big.Int).Mul(A,C)),B)
-	return res
-}
-
 //original function
-//func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTime time.Time) (uint32, error) {
-//	// Genesis block.
-//	if lastNode == nil {
-//		return b.chainParams.PowLimitBits, nil
-//	}
-//
-//	// Return the previous block's difficulty requirements if this block
-//	// is not at a difficulty retarget interval.
-//	if (lastNode.height+1)%b.blocksPerRetarget != 0 {
+func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTime time.Time) (uint32, error) {
+	// Genesis block.
+	if lastNode == nil {
+		return b.chainParams.PowLimitBits, nil
+	}
+
+	// Return the previous block's difficulty requirements if this block
+	// is not at a difficulty retarget interval.
+	if (lastNode.height+1)%b.blocksPerRetarget != 0 {
 //		// For networks that support it, allow special reduction of the
 //		// required difficulty once too much time has elapsed without
 //		// mining a block.
-//		if b.chainParams.ReduceMinDifficulty {
+		if b.chainParams.ReduceMinDifficulty {
 //			// Return minimum difficulty when more than the desired
 //			// amount of time has elapsed without mining a block.
-//			reductionTime := int64(b.chainParams.MinDiffReductionTime /
-//				time.Second)
-//			allowMinTime := lastNode.timestamp + reductionTime
-//			if newBlockTime.Unix() > allowMinTime {
-//				return b.chainParams.PowLimitBits, nil
-//			}
+			reductionTime := int64(b.chainParams.MinDiffReductionTime /
+				time.Second)
+			allowMinTime := lastNode.timestamp + reductionTime
+			if newBlockTime.Unix() > allowMinTime {
+				return b.chainParams.PowLimitBits, nil
+			}
 //
 //			// The block was mined within the desired timeframe, so
 //			// return the difficulty for the last block which did
 //			// not have the special minimum difficulty rule applied.
-//			return b.findPrevTestNetDifficulty(lastNode), nil
-//		}
+			return b.findPrevTestNetDifficulty(lastNode), nil
+		}
 //
 //		// For the main network (or any unrecognized networks), simply
 //		// return the previous block's difficulty requirements.
-//		return lastNode.bits, nil
-//	}
+		return lastNode.bits, nil
+	}
 //
 //	// Get the block node at the previous retarget (targetTimespan days
 //	// worth of blocks).
-//	firstNode := lastNode.RelativeAncestor(b.blocksPerRetarget - 1)
-//	if firstNode == nil {
-//		return 0, AssertError("unable to obtain previous retarget block")
-//	}
+	firstNode := lastNode.RelativeAncestor(b.blocksPerRetarget - 1)
+	if firstNode == nil {
+		return 0, AssertError("unable to obtain previous retarget block")
+	}
 //
 //	// Limit the amount of adjustment that can occur to the previous
 //	// difficulty.
-//	actualTimespan := lastNode.timestamp - firstNode.timestamp
-//	adjustedTimespan := actualTimespan
-//	if actualTimespan < b.minRetargetTimespan {
-//		adjustedTimespan = b.minRetargetTimespan
-//	} else if actualTimespan > b.maxRetargetTimespan {
-//		adjustedTimespan = b.maxRetargetTimespan
-//	}
+	actualTimespan := lastNode.timestamp - firstNode.timestamp
+	adjustedTimespan := actualTimespan
+	if actualTimespan < b.minRetargetTimespan {
+		adjustedTimespan = b.minRetargetTimespan
+	} else if actualTimespan > b.maxRetargetTimespan {
+		adjustedTimespan = b.maxRetargetTimespan
+	}
 //
 //	// Calculate new target difficulty as:
 //	//  currentDifficulty * (adjustedTimespan / targetTimespan)
 //	// The result uses integer division which means it will be slightly
 //	// rounded down.  Bitcoind also uses integer division to calculate this
 //	// result.
-//	oldTarget := CompactToBig(lastNode.bits)
-//	newTarget := new(big.Int).Mul(oldTarget, big.NewInt(adjustedTimespan))
-//	targetTimeSpan := int64(b.chainParams.TargetTimespan / time.Second)
-//	newTarget.Div(newTarget, big.NewInt(targetTimeSpan))
+	oldTarget := CompactToBig(lastNode.bits)
+	newTarget := new(big.Int).Mul(oldTarget, big.NewInt(adjustedTimespan))
+	targetTimeSpan := int64(b.chainParams.TargetTimespan / time.Second)
+	newTarget.Div(newTarget, big.NewInt(targetTimeSpan))
 //
 //	// Limit new value to the proof of work limit.
-//	if newTarget.Cmp(b.chainParams.PowLimit) > 0 {
-//		newTarget.Set(b.chainParams.PowLimit)
-//	}
+	if newTarget.Cmp(b.chainParams.PowLimit) > 0 {
+		newTarget.Set(b.chainParams.PowLimit)
+	}
 //
 //	// Log new target difficulty and return it.  The new target logging is
 //	// intentionally converting the bits back to a number instead of using
 //	// newTarget since conversion to the compact representation loses
 //	// precision.
-//	newTargetBits := BigToCompact(newTarget)
+	newTargetBits := BigToCompact(newTarget)
 //	log.Debugf("Difficulty retarget at block height %d", lastNode.height+1)
 //	log.Debugf("Old target %08x (%064x)", lastNode.bits, oldTarget)
 //	log.Debugf("New target %08x (%064x)", newTargetBits, CompactToBig(newTargetBits))
@@ -375,8 +365,8 @@ func calDiff(hashRate float64) *big.Int{
 //		time.Duration(adjustedTimespan)*time.Second,
 //		b.chainParams.TargetTimespan)
 //
-//	return newTargetBits, nil
-//}
+	return newTargetBits, nil
+}
 
 func DecToHex(n *big.Int) string {
 	res := ""
