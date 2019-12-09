@@ -31,8 +31,13 @@ git clone git@github.com:lightningnetwork/lnd.git lightningnetwork/lnd
 cd ..
 git clone git@github.com:grpc/grpc-go.git google.golang.org/grpc
 git clone git@github.com:google/go-genproto.git google.golang.org/genproto
+
+# compile btcwallet
 cd github.com/btcsuite/btcwallet
 echo "compiling btcwallet..."
-go install
+go install . ./cmd/...
 
-
+# compile btcd
+cd ../btcd
+echo "compiling btcd"
+go install . ./cmd/...
