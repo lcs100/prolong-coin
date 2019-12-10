@@ -30,3 +30,14 @@
 切换目录到prolong-coin/github.com/btcsuite/btcd，执行
 
     bash download.sh
+
+
+单节点上运行
+=====
+
+1、新建钱包
+
+    btcwallet --simnet --create
+
+这样会新建一个钱包
+2、新建
