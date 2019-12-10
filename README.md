@@ -12,8 +12,8 @@
 -----
 首先
 
-        cd prolong-coin/
-        bash pre-install.sh
+    cd prolong-coin/
+    bash pre-install.sh
 
 之后，用户自行配置环境变量
 
@@ -27,6 +27,6 @@
 
     source ~/.bashrc
 
-之后执行
+切换目录到prolong-coin/github.com/btcsuite/btcd，执行
 
-    bash /github.com/btcsuite/btcd/download.sh
+    bash download.sh

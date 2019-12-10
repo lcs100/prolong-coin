@@ -11,3 +11,7 @@ cd $HOME
 wget https://dl.google.com/go/go1.11.5.linux-amd64.tar.gz
 tar xzf go1.11.5.linux-amd64.tar.gz -C /usr/local
 
+# 配置go的工作环境
+mkdir $HOME/go
+mkdir $HOME/go/src
+mkdir $HOME/go/bin
