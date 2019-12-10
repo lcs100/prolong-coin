@@ -41,3 +41,13 @@ go install . ./cmd/...
 cd ../btcd
 echo "compiling btcd"
 go install . ./cmd/...
+
+
+# copy conf to HOME
+cd $HOME
+mkdir .btcd
+cp $GOPATH/src/github.com/btcsuite/btcd/sample-btcd.conf ~/.btcd/btcd.conf
+
+cd $HOME
+mkdir .btcwallet
+cp $GOPATH/src/github.com/btcsuite/btcwallet/sample-btcwallet.conf ~/.btcwallet/btcwallet.conf
