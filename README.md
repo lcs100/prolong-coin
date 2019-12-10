@@ -8,9 +8,13 @@
     gcc
     ubuntu 16.04及以上
 
-
-拉下来之后，执行pre-install.sh
-在执行完pre-install.sh之后，用户自行配置环境变量：
+编译步骤:
+-----
+首先
+        cd prolong-coin/
+        bash pre-install.sh
+执行pre-install.sh
+在执行完pre-install.sh之后，用户自行配置环境变量
 
     export GOPATH=$HOME/go
     export GOROOT=/usr/local/go
