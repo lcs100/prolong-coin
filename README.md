@@ -40,6 +40,7 @@
     btcwallet --simnet --create
 
 新建密码并牢记，这样会新建一个钱包
+
 2、开启btcd
 
     btcd --simnet --rpcuser=rpcuser --rpcpass=rpcpass
@@ -48,11 +49,7 @@
 
     btcwallet --simnet --username=rpcuser --password=rpcpass
 
-4、打开第三个终端，执行以下命令，创建地址
-
-    btcctl --simnet --rpcuser=rpcuser --rpcpass=rpcpass
-
-解锁：
+4、打开第三个终端，执行以下命令，解锁钱包：
 
     btcctl --simnet --rpcuser=rpcuser --rpcpass=rpcpass --wallet walletpassphrase "lcs" 180
 
@@ -65,6 +62,7 @@
     btcctl --simnet --rpcuser=rpcuser --rpcpass=rpcpass --wallet getnewaddress lcsnew
 
 记住新建的地址，比较重要
+
 5、利用新地址进行挖矿
 
     btcd --simnet --rpcuser=rpcuser --rpcpass=rpcpass --miningaddr= --txindex
